@@ -13,3 +13,7 @@ python3 -m virtualenv p1env
 ```shell
 python3 -m pip install -r requirements.txt
 ```
+
+## Dependências
+* Python 3.8.6
+* Pyro 4.80
