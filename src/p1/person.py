@@ -52,4 +52,4 @@ class Person:
         self.experience.append(experience)
 
     def __str__(self):
-        return f"Email: {self.email}, First Name: {self.name}, Last Name: {self.lname}, Residence: {self.residence}, " + f"Education: {self.education}, Experience: {self.experience}."
+        return f"Email: {self.email}, First Name: {self.name}, Last Name: {self.lname}, Residence: {self.residence}, " + f"Education: {self.education}, \nSkills: {self.skills}, Experience: {self.experience}.\n"
