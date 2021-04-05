@@ -1,5 +1,11 @@
+import sys
+import Pyro4
+import Pyro4.util
 from person import Person
 from system import System
+
+sys.excepthook = Pyro4.util.excepthook
+system = Pyro4.Proxy("PYRONAME:example.system")
 
 aian = Person("aianshay@gmail.com", "Aian", "Shay", "Belém", "UFPA",
               ["Python", "Data Science", "Machine Learning"],
@@ -14,7 +20,7 @@ isabela = Person("isa.maues@gmail.com", "Isabela", "Maues", "Belém", "UFPA",
                  ["C++", "Design", "Figma"],
                  ['Student at xxxx', 'Temp at yyyy', 'Fellow at zzzz'])
 
-system = System(users=[aian, joao, pedro])
+# system = System(users=[aian, joao, pedro])
 
 system.add_user(user=isabela)
 system.add_xp_to_user(email="ppvitor@gmail.com", experience="Developer at w")

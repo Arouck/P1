@@ -1,6 +1,9 @@
 from person import Person
+import Pyro4
 
 
+@Pyro4.expose
+@Pyro4.behavior(instance_mode='single')
 class System:
     def __init__(self, users: list[Person] = []):
         self._users = users
@@ -47,3 +50,11 @@ class System:
 
     def show_users(self):
         print(*self._users, sep='\n')
+
+
+def server():
+    Pyro4.Daemon.serveSimple({System: "example.system"}, ns=True)
+
+
+if __name__ == '__main__':
+    server()
