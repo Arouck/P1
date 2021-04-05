@@ -1,11 +1,12 @@
 class Person:
     def __init__(self, email: str, name: str, lname: str, residence: str,
-                 education: str, skills: str, experience: list[str]):
+                 education: str, skills: list[str], experience: list[str]):
         self.email = email
         self.name = name
         self.lname = lname
         self.residence = residence
         self.education = education
+        self.skills = skills
         self.experience = experience
 
     def get_email(self) -> str:
@@ -37,6 +38,12 @@ class Person:
 
     def set_education(self, education: str):
         self.education = education
+
+    def get_skills(self) -> list[str]:
+        return self.skills
+
+    def add_skills(self, skill: str):
+        self.skills.append(skill)
 
     def get_experience(self) -> list[str]:
         return self.experience
