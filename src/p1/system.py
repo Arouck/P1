@@ -2,8 +2,8 @@ from person import Person
 
 
 class System:
-    def __init__(self):
-        self._users = list[Person]
+    def __init__(self, users: list[Person] = []):
+        self._users = users
 
     @property
     def users(self) -> list[Person]:
@@ -17,9 +17,7 @@ class System:
     def users(self):
         del self._users
 
-    def add_user(self, name: str, lname: str, residence: str, education: str,
-                 skills: str, experience: list[str]):
-        user = Person(name, lname, residence, education, skills, experience)
+    def add_user(self, user: Person):
         self._users.append(user)
 
     def add_xp_to_user(self, email: str, experience: str):
@@ -47,7 +45,5 @@ class System:
             if user.get_residence() == residence
         ]
 
-    def list_users(self):
+    def show_users(self):
         print(*self._users, sep='\n')
-        # for user in self._users:
-        #     print(user)
