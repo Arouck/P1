@@ -129,6 +129,7 @@ def core(remote, host, port):
     
     file.write(repr(ellapse_6*1000))
     print(f"Task 6: {ellapse_6*1000} milliseconds.")
+    file.close()
     #print(
     #system.users
     #, sep="\n")
