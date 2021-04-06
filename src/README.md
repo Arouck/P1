@@ -24,11 +24,22 @@ python core.py --remote -host 'your_host' -port 'your_port'
 O tempo de comunicação entre o cliente e o servidor é calculado automaticamente pelo Sistema Operacional.
 
 * **Windows Powershell:** ```Measure-Command {python .\src\core.py | Out-Default}```;
+* **Linux Terminal:** ```time python core.py```.
+
+#### Exemplo
+
+```bash
+time python core.py --remote -host **.*.*.* -port ****
+________________________________________________________
+Executed in   73.79 millis    fish           external
+   usr time   57.01 millis  153.00 micros   56.86 millis
+   sys time   13.43 millis   39.00 micros   13.39 millis
+```
 
 ## Observações importantes
-> O sistema, de forma padrão, imprime apenas o tempo de 20 execuções para cada operação, em milissegundos. Caso você queira que sejam impressas as saídas de cada operação, é só remover o *#* que comenta os prints dessas operações.
+1. O sistema, de forma padrão, imprime apenas o tempo de 20 execuções para cada operação, em milissegundos. Caso você queira que sejam impressas as saídas de cada operação, utilize o argumento `--verbose`.
 
-> Certifique-se de que os outros dois scripts, *namespace* e servidor, estão rodando antes de iniciar o `core.py`.
+2. Certifique-se de que os outros dois scripts, *namespace* e servidor, estão rodando antes de iniciar o `core.py`.
 
 ## 'type' object is not subscriptable.
 
