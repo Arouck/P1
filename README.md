@@ -20,10 +20,16 @@ virtualenv p1env
 
 Ative o ambiente recém-criado:
 
-* Windows
+* Windows CMD
 
 ```bash
-cd p1env\Scripts\activate.bat
+p1env\Scripts\activate.bat
+```
+
+* Windows Powershell
+
+```bash
+p1env\Scripts\activate.ps1
 ```
 
 * Linux
