@@ -3,7 +3,7 @@
 ## Instalação
 
 ```bash
-git clone https://github.com/Arouck/P1.git
+git clone https://github.com/Helgras/P1.git
 cd P1/
 pip install -r requirements.txt
 ```
