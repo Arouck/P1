@@ -6,16 +6,16 @@ from system import System
 
 aian = Person("aianshay@gmail.com", "Aian", "Shay", "Belem", "UFPA",
               ["Python", "Data Science", "Machine Learning"],
-              ['Student at xxxx', 'Temp at yyyy', 'Fellow at zzzz'])
+              ['Student at Ideal', 'Temp at Labes', 'Fellow at Vibe'])
 joao = Person("jvcanavarro@gmail.com", "Joao", "Canavarro", "Belem", "UFPA",
               ["Python", "NLP", "Speech Recognition"],
-              ['Student at xxxx', 'Temp at yyyy', 'Fellow at zzzz'])
+              ['Student at Equipe', 'Temp at Labvis', 'Fellow at Nubank'])
 pedro = Person("ppvitor@gmail.com", "Pedro", "Melo", "Belem", "UFPA",
                ["Java", "Design", "SQL"],
-               ['Student at xxxx', 'Temp at yyyy', 'Fellow at zzzz'])
+               ['Student at Madre', 'Temp at Labsc', 'Fellow at Figma'])
 isabela = Person("isa.maues@gmail.com", "Isabela", "Maues", "Belem", "UFPA",
                  ["C++", "Design", "Figma"],
-                 ['Student at xxxx', 'Temp at yyyy', 'Fellow at zzzz'])
+                 ['Student at Logos', 'Temp at ', 'Fellow at Vale'])
 
 sys.excepthook = Pyro4.util.excepthook
 system = Pyro4.Proxy("PYRONAME:system.core")
