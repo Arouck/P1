@@ -24,14 +24,15 @@ system.add_user(user=aian.to_json())
 system.add_user(user=isabela.to_json())
 system.add_user(user=joao.to_json())
 system.add_user(user=pedro.to_json())
+system.add_user(user=pedro.to_json())
 
 system.add_xp_to_user(email="ppvitor@gmail.com", experience="Developer at w")
 
 print(system.get_user_by_email(email="jvcanavarro@gmail.com"))
-print(system.get_user_by_education(education="UFPA"))
+print(*system.get_users_by_education(education="UFPA"), sep='\n')
 
 print(system.get_xp_by_email(email="aianshay@gmail.com"))
-print(system.get_xp_by_residence(residence="Belem"))
+print(*system.get_xps_by_residence(residence="Belem"), sep='\n')
 
 print(*system.users, sep='\n')
 
