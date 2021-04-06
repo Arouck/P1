@@ -15,7 +15,7 @@ pedro = Person("ppvitor@gmail.com", "Pedro", "Melo", "Belem", "UFPA",
                ['Student at Madre', 'Temp at Labsc', 'Fellow at Figma'])
 isabela = Person("isa.maues@gmail.com", "Isabela", "Maues", "Belem", "UFPA",
                  ["C++", "Design", "Figma"],
-                 ['Student at Logos', 'Temp at ', 'Fellow at Vale'])
+                 ['Student at Logos', 'Temp at LAAI', 'Fellow at Vale'])
 
 sys.excepthook = Pyro4.util.excepthook
 system = Pyro4.Proxy("PYRONAME:system.core")
