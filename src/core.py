@@ -1,5 +1,6 @@
 import sys
 
+import time
 import click
 import Pyro4
 import Pyro4.util
@@ -50,6 +51,8 @@ def core(remote, host, port):
         ["Student at Logos", "Temp at LAAI", "Fellow at Vale"],
     )
 
+    file = open("times.txt", "w")
+
     sys.excepthook = Pyro4.util.excepthook
     system = (
         Pyro4.Proxy(f"PYRO:system.core@{host}:{port}")
@@ -62,15 +65,73 @@ def core(remote, host, port):
     system.add_user(user=pedro.to_json())
     system.add_user(user=pedro.to_json())
 
-    system.add_xp_to_user(email="ppvitor@gmail.com", experience="Developer at w")
+    loop_size = 20
+    start = time.time()
+    for i in range(loop_size):
+            system.add_xp_to_user(email="ppvitor@gmail.com", experience="Developer at w")
+    end = time.time()
+    ellapse_1 = end - start
 
-    print(system.get_user_by_email(email="jvcanavarro@gmail.com"))
-    print(system.get_xp_by_email(email="aianshay@gmail.com"))
+    file.write(repr(ellapse_1*1000) + "\n")
+    print(f"Task 1: {ellapse_1*1000} milliseconds.")
 
-    print(*system.get_users_by_education(education="UFPA"), sep="\n")
-    print(*system.get_xps_by_residence(residence="Belem"), sep="\n")
 
-    print(*system.users, sep="\n")
+    start = time.time()
+    for i in range(loop_size):
+            system.get_user_by_email(email="jvcanavarro@gmail.com")
+    end = time.time()
+    ellapse_2 = end - start
+
+    file.write(repr(ellapse_2*1000) + "\n")
+    print(f"Task 2: {ellapse_2*1000} milliseconds.")
+    #print(
+    #system.get_user_by_email(email="jvcanavarro@gmail.com")
+    #    )
+    start = time.time()
+    for i in range(loop_size):
+            system.get_xp_by_email(email="aianshay@gmail.com")
+    end = time.time()
+    ellapse_3 = end - start
+
+    file.write(repr(ellapse_3*1000) + "\n")
+    print(f"Task 3: {ellapse_3*1000} milliseconds.")
+    #print(
+    #system.get_xp_by_email(email="aianshay@gmail.com")
+    #    )
+    
+    start = time.time()
+    for i in range(loop_size):
+            system.get_users_by_education(education="UFPA")
+    end = time.time()
+    ellapse_4 = end - start
+
+    file.write(repr(ellapse_4*1000) + "\n")
+    print(f"Task 4: {ellapse_4*1000} milliseconds.")
+    #print(
+    #system.get_users_by_education(education="UFPA")
+    #, sep="\n")
+    start = time.time()
+    for i in range(loop_size):
+            system.get_xps_by_residence(residence="Belem")
+    end = time.time()
+    ellapse_5 = end - start
+    
+    file.write(repr(ellapse_5*1000) + "\n")
+    print(f"Task 5: {ellapse_5*1000} milliseconds.")
+    #system.get_xps_by_residence(residence="Belem")
+    #, sep="\n")
+
+    start = time.time()
+    for i in range(loop_size):
+            system.users
+    end = time.time()
+    ellapse_6 = end - start
+    
+    file.write(repr(ellapse_6*1000))
+    print(f"Task 6: {ellapse_6*1000} milliseconds.")
+    #print(
+    #system.users
+    #, sep="\n")
 
     # Server Side
     system.show_users()
