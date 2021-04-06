@@ -1,6 +1,9 @@
-from person import Person
-import Pyro4
 import json
+
+import click
+import Pyro4
+
+from person import Person
 
 
 @Pyro4.expose
@@ -76,8 +79,18 @@ class System:
         self._users = []
 
 
-def server():
-    Pyro4.Daemon.serveSimple({System: "system.core"}, ns=True)
+@click.command()
+@click.option('--remote', is_flag=True)
+@click.option('-host', type=str)
+@click.option('-port', type=int)
+def server(remote, host, port):
+    if remote:
+        Pyro4.Daemon.serveSimple({System: 'system.core'},
+                                 host=host,
+                                 port=port,
+                                 ns=False)
+    else:
+        Pyro4.Daemon.serveSimple({System: 'system.core'}, ns=True)
 
 
 if __name__ == '__main__':
