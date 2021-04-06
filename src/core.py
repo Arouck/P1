@@ -84,9 +84,7 @@ def core(remote, host, port):
 
     file.write(repr(ellapse_2*1000) + "\n")
     print(f"Task 2: {ellapse_2*1000} milliseconds.")
-    #print(
-    #system.get_user_by_email(email="jvcanavarro@gmail.com")
-    #    )
+    #print(system.get_user_by_email(email="jvcanavarro@gmail.com"))
     start = time.time()
     for i in range(loop_size):
             system.get_xp_by_email(email="aianshay@gmail.com")
@@ -95,9 +93,7 @@ def core(remote, host, port):
 
     file.write(repr(ellapse_3*1000) + "\n")
     print(f"Task 3: {ellapse_3*1000} milliseconds.")
-    #print(
-    #system.get_xp_by_email(email="aianshay@gmail.com")
-    #    )
+    #print(system.get_xp_by_email(email="aianshay@gmail.com"))
     
     start = time.time()
     for i in range(loop_size):
@@ -107,9 +103,7 @@ def core(remote, host, port):
 
     file.write(repr(ellapse_4*1000) + "\n")
     print(f"Task 4: {ellapse_4*1000} milliseconds.")
-    #print(
-    #system.get_users_by_education(education="UFPA")
-    #, sep="\n")
+    #print(*system.get_users_by_education(education="UFPA"), sep="\n")
     start = time.time()
     for i in range(loop_size):
             system.get_xps_by_residence(residence="Belem")
@@ -118,8 +112,7 @@ def core(remote, host, port):
     
     file.write(repr(ellapse_5*1000) + "\n")
     print(f"Task 5: {ellapse_5*1000} milliseconds.")
-    #system.get_xps_by_residence(residence="Belem")
-    #, sep="\n")
+    #print(*system.get_xps_by_residence(residence="Belem"), sep="\n")
 
     start = time.time()
     for i in range(loop_size):
@@ -130,9 +123,7 @@ def core(remote, host, port):
     file.write(repr(ellapse_6*1000))
     print(f"Task 6: {ellapse_6*1000} milliseconds.")
     file.close()
-    #print(
-    #system.users
-    #, sep="\n")
+    #print(*system.users, sep="\n")
 
     # Server Side
     system.show_users()
