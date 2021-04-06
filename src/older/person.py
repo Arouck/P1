@@ -2,16 +2,18 @@ import json
 
 
 class Person:
-    def __init__(self,
-                 email = '',
-                 name = '',
-                 lname = '',
-                 residence = '',
-                 education = '',
-                 skills = [],
-                 experience = [],
-                 serie = '',
-                 from_json = False):
+    def __init__(
+        self,
+        email="",
+        name="",
+        lname="",
+        residence="",
+        education="",
+        skills=[],
+        experience=[],
+        serie="",
+        from_json=False,
+    ):
         if from_json:
             self.__dict__ = json.loads(serie)
         else:
@@ -69,4 +71,7 @@ class Person:
         return json.dumps(self, default=lambda x: x.__dict__, indent=2)
 
     def __str__(self):
-        return f"Email: {self.email}, First Name: {self.name}, Last Name: {self.lname}, Residence: {self.residence}, " + f"Education: {self.education}, \nSkills: {self.skills}, Experience: {self.experience}.\n"
+        return (
+            f"Email: {self.email}, First Name: {self.name}, Last Name: {self.lname}, Residence: {self.residence}, "
+            + f"Education: {self.education}, \nSkills: {self.skills}, Experience: {self.experience}.\n"
+        )
