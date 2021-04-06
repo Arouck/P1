@@ -63,7 +63,7 @@ def core(remote, host, port):
     system.add_user(user=isabela.to_json())
     system.add_user(user=joao.to_json())
     system.add_user(user=pedro.to_json())
-    system.add_user(user=pedro.to_json())
+    #system.add_user(user=pedro.to_json())
 
     loop_size = 20
     start = time.time()
