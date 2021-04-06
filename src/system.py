@@ -7,7 +7,7 @@ from person import Person
 
 
 @Pyro4.expose
-@Pyro4.behavior(instance_mode='single')
+@Pyro4.behavior(instance_mode="single")
 class System:
     def __init__(self, users: list[Person] = []):
         self._ids = set()
@@ -41,7 +41,7 @@ class System:
         user = Person(serie=user, from_json=True)
         email = user.get_email()
         if email in self.ids:
-            print('Email already registered.')
+            print("Email already registered.")
         else:
             self._users.append(user)
             self._ids.add(email)
@@ -52,27 +52,27 @@ class System:
                 user.add_experience(experience)
 
     def get_user_by_email(self, email: str) -> list[Person]:
-        return next(user.to_json() for user in self._users
-                    if user.email == email)
+        return next(user.to_json() for user in self._users if user.email == email)
 
     def get_users_by_education(self, education: str) -> list[Person]:
         return [
-            user.to_json() for user in self._users
-            if user.get_education() == education
+            user.to_json() for user in self._users if user.get_education() == education
         ]
 
     def get_xp_by_email(self, email: str) -> list[str]:
-        return next(user.get_experience() for user in self._users
-                    if user.get_email() == email)
+        return next(
+            user.get_experience() for user in self._users if user.get_email() == email
+        )
 
     def get_xps_by_residence(self, residence: str) -> list[str]:
         return [
-            user.get_experience() for user in self._users
+            user.get_experience()
+            for user in self._users
             if user.get_residence() == residence
         ]
 
     def show_users(self):
-        print(*self._users, sep='\n')
+        print(*self._users, sep="\n")
 
     def clean_cache(self):
         self._ids = set()
@@ -80,18 +80,17 @@ class System:
 
 
 @click.command()
-@click.option('--remote', is_flag=True)
-@click.option('-host', type=str)
-@click.option('-port', type=int)
+@click.option("--remote", is_flag=True)
+@click.option("-host", type=str)
+@click.option("-port", type=int)
 def server(remote, host, port):
     if remote:
-        Pyro4.Daemon.serveSimple({System: 'system.core'},
-                                 host=host,
-                                 port=port,
-                                 ns=False)
+        Pyro4.Daemon.serveSimple(
+            {System: "system.core"}, host=host, port=port, ns=False
+        )
     else:
-        Pyro4.Daemon.serveSimple({System: 'system.core'}, ns=True)
+        Pyro4.Daemon.serveSimple({System: "system.core"}, ns=True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     server()
