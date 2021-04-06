@@ -35,5 +35,5 @@ cd source p1env/bin/activate
 ## Dependências
 
 * Python>=3.8
-* Pyro 4.80
-* Json 2.0.9
+* Pyro==4.80
+* Json==2.0.9
