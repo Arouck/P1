@@ -9,11 +9,23 @@ from person import Person
 from system import System
 
 
+LOOP_SIZE = 20
+
+
+def calculate_task_time_in_ms(function, args):
+    start = time.time()
+    for i in range(LOOP_SIZE):
+        function(*args)
+    end = time.time()
+    return str((end - start) * 1000)
+
+
 @click.command()
+@click.option("--verbose", is_flag=True)
 @click.option("--remote", is_flag=True)
 @click.option("-host", type=str)
 @click.option("-port", type=int)
-def core(remote, host, port):
+def core(verbose, remote, host, port):
     aian = Person(
         "aianshay@gmail.com",
         "Aian",
@@ -51,7 +63,7 @@ def core(remote, host, port):
         ["Student at Logos", "Temp at LAAI", "Fellow at Vale"],
     )
 
-    file = open("times.txt", "w")
+    results = open("../results/times.txt", "w")
 
     sys.excepthook = Pyro4.util.excepthook
     system = (
@@ -64,69 +76,35 @@ def core(remote, host, port):
     system.add_user(user=joao.to_json())
     system.add_user(user=pedro.to_json())
 
-    loop_size = 20
-    start = time.time()
-    for i in range(loop_size):
-            system.add_xp_to_user(email="ppvitor@gmail.com", experience="Developer at w")
-    end = time.time()
-    ellapse_1 = end - start
+    tasks = {
+        system.add_xp_to_user: ["ppvitor@gmail.com", "Developer at w"],
+        system.get_user_by_email: ["jvcanavarro@gmail.com"],
+        system.get_xp_by_email: ["aianshay@gmail.com"],
+        system.get_users_by_education: ["UFPA"],
+        system.get_xps_by_residence: ["Belem"],
+        system.get_users_information: [],
+    }
 
-    file.write(repr(ellapse_1*1000) + "\n")
-    print(f"Task 1: {ellapse_1*1000} milliseconds.")
+    ellapses = []
+    for i, task in enumerate(tasks):
+        ellapses.append(calculate_task_time_in_ms(task, tasks[task]))
+        print(f"Task {i+1}: {ellapses[i]} milliseconds.")
 
+    if verbose:
+        print(system.get_user_by_email(email="jvcanavarro@gmail.com"))
+        print(system.get_xp_by_email(email="aianshay@gmail.com"))
 
-    start = time.time()
-    for i in range(loop_size):
-            system.get_user_by_email(email="jvcanavarro@gmail.com")
-    end = time.time()
-    ellapse_2 = end - start
+        print(*system.get_users_by_education(education="UFPA"), sep="\n")
+        print(*system.get_xps_by_residence(residence="Belem"), sep="\n")
 
-    file.write(repr(ellapse_2*1000) + "\n")
-    print(f"Task 2: {ellapse_2*1000} milliseconds.")
-    #print(system.get_user_by_email(email="jvcanavarro@gmail.com"))
-    start = time.time()
-    for i in range(loop_size):
-            system.get_xp_by_email(email="aianshay@gmail.com")
-    end = time.time()
-    ellapse_3 = end - start
+        print(*system.get_users_information(), sep="\n")
 
-    file.write(repr(ellapse_3*1000) + "\n")
-    print(f"Task 3: {ellapse_3*1000} milliseconds.")
-    #print(system.get_xp_by_email(email="aianshay@gmail.com"))
-    
-    start = time.time()
-    for i in range(loop_size):
-            system.get_users_by_education(education="UFPA")
-    end = time.time()
-    ellapse_4 = end - start
-
-    file.write(repr(ellapse_4*1000) + "\n")
-    print(f"Task 4: {ellapse_4*1000} milliseconds.")
-    #print(*system.get_users_by_education(education="UFPA"), sep="\n")
-    start = time.time()
-    for i in range(loop_size):
-            system.get_xps_by_residence(residence="Belem")
-    end = time.time()
-    ellapse_5 = end - start
-    
-    file.write(repr(ellapse_5*1000) + "\n")
-    print(f"Task 5: {ellapse_5*1000} milliseconds.")
-    #print(*system.get_xps_by_residence(residence="Belem"), sep="\n")
-
-    start = time.time()
-    for i in range(loop_size):
-            system.users
-    end = time.time()
-    ellapse_6 = end - start
-    
-    file.write(repr(ellapse_6*1000))
-    print(f"Task 6: {ellapse_6*1000} milliseconds.")
-    file.close()
-    #print(*system.users, sep="\n")
+    results.write('\n'.join(ellapses))
+    results.close()
 
     # Server Side
     system.show_users()
-    system.clean_cache()
+    system.clear_cache()
 
 
 if __name__ == "__main__":

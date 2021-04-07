@@ -71,10 +71,13 @@ class System:
             if user.get_residence() == residence
         ]
 
+    def get_users_information(self) -> list[str]:
+        return [user.to_json() for user in self._users]
+
     def show_users(self):
         print(*self._users, sep="\n")
 
-    def clean_cache(self):
+    def clear_cache(self):
         self._ids = set()
         self._users = []
 
